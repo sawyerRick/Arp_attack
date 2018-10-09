@@ -1,5 +1,5 @@
 {
-    "target_ip": "",
-    "gatewat_ip": "",
-    "interface": ""
+    "target_ip": "192.168.43.40",
+    "gateway_ip": "192.168.43.1",
+    "interface": "Realtek RTL8192EU Wireless LAN 802.11n USB 2.0 Network Adapter"
 }
