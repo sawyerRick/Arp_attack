@@ -26,13 +26,16 @@ if os.name == "nt":
 def start_smell():
     global isOn
     while isOn:
-        print(isOn)
-        time.sleep(1)
         response_ip = sniffer.recvfrom(65565)[1][0]
         if response_ip not in ip_stack:
             ip_stack.append(response_ip)
-            print("who response:%s" % response_ip)  
+            print("who response:%s" % response_ip) 
 
+def input_to_file():
+    with open("iptables.txt", "a") as f:
+        for ip in ip_stack:
+            f.write(str(ip) + '\n')
+     
 
 if __name__ == "__main__":
     isOn = 1
@@ -40,10 +43,10 @@ if __name__ == "__main__":
     smell_thread.start()
     while 1:
         try:
-            print("shit")
             time.sleep(2)
         except KeyboardInterrupt:     
             isOn = 0
+            input_to_file()
             #在Windows平台上关闭混杂模式  
             if os.name == "nt":  
                 sniffer.ioctl(socket.SIO_RCVALL,socket.RCVALL_OFF)
