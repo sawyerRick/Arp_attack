@@ -24,7 +24,6 @@ def input_to_file(packets):
         data_file = str(datetime.datetime.now())[:10] + 'arp.pcap'
         wrpcap(data_file,packets)
 
-
 def restore_target(gateway_ip,gateway_mac,target_ip,target_mac):  
     print ("[*] Restoring target... ")  
     send(ARP(op=2,psrc=gateway_ip,pdst=target_ip,hwdst="ff:ff:ff:ff:ff:ff",hwsrc=gateway_mac),count=5)  
